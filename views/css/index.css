@@ -1,0 +1,50 @@
+@import url(../shared/styles/shared.css);
+
+.container {
+}
+
+.main-title {
+  font-family: "K2D", sans-serif;
+  font-size: 40px;
+  font-weight: bold;
+  padding-bottom: 30px;
+}
+
+.navigation {
+  display: flex;
+  justify-content: left;
+  flex-wrap: wrap;
+}
+
+p {
+  color: aliceblue;
+}
+
+img {
+  display: inline-block;
+  margin-right: 0px;
+}
+
+.card {
+  height: 300px;
+  width: 300px;
+  min-width: 300px;
+  font-family: "K2D", sans-serif;
+  font-size: 24px;
+  font-weight: semi-bold;
+  border-radius: 20px;
+  padding: 20px;
+  margin: 0px 5px 10px 0px;
+}
+
+.teachers {
+  background: #eeaaeb;
+  flex-basis: 33%;
+  max-width: 300px;
+}
+
+.students {
+  background: #9bf3a4;
+  flex-basis: 66%;
+  max-width: 500px;
+}
