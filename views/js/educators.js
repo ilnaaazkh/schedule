@@ -49,7 +49,6 @@ var educators = [
   },
 ];
 
-var nextId = 6;
 getEducators();
 
 $(document).ready(function () {
@@ -62,13 +61,18 @@ function getEducators() {
   const educatorsElem = $(".educators");
   $(".row").remove();
 
+  if (educators.length == 0) {
+    const row = $("<div>Ничего не найдено</div>").addClass("row");
+    educatorsElem.append(row);
+  }
+
   for (let employee of educators) {
     const row = $("<div></div>").addClass("row");
 
     const educator = $(
       `<div>${employee.firstName} ${employee.middleName} ${employee.lastName}, ${employee.academicDegree}, ${employee.department}</div>`
     )
-      .addClass("educator")
+      .addClass("card")
       .on("click", () => showEditModal(employee.id));
 
     const deleteButton = $("<button>Удалить</button>")

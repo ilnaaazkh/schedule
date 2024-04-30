@@ -1,6 +1,30 @@
-@import url("../shared/styles/shared.css");
-@import url("../css/admin.css");
-@import url("./popups.css");
+.container {
+  display: flex;
+}
+
+.sidebar {
+  height: 100vh;
+  padding: 0px 10px;
+  background-color: #f1f5fc;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  position: sticky;
+  top: 0;
+}
+
+.action {
+  margin: 10px 20px;
+}
+
+.action a {
+  color: black;
+  font-weight: regular;
+}
+
+.current-action {
+  font-weight: bold;
+}
 
 h1 {
   font-size: 30px;
@@ -14,7 +38,7 @@ h1 {
   padding: 10%;
 }
 
-.educator {
+.card {
   background: white;
   height: 30px;
   text-align: left;
@@ -55,7 +79,9 @@ h1 {
 .search {
   background: transparent;
   border-bottom: 1px solid #8ab6f9;
-  width: 200px;
+  width: 300px;
   height: 30px;
-  margin-bottom: 10px;
+  margin: 20px;
+  display: flex;
+  justify-self: left;
 }
