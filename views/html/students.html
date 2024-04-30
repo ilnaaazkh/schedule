@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Расписание студентов</title>
+    <link rel="stylesheet" href="../css/schedule.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h4>Расписание студентов</h4>
+      <div class="input_group">
+        <div>
+          <span>Номер группы:</span>
+          <input type="number" />
+          <button>Найти</button>
+        </div>
+        <div class="week">
+          <span>Чётная</span>
+          <div class="circle"></div>
+        </div>
+      </div>
+      <div class="schedule">
+        <div class="day">
+          <div>Пн</div>
+          <div class="lesson"></div>
+          <div class="lesson"></div>
+        </div>
+        <div class="day">
+          <div>Вт</div>
+        </div>
+        <div class="day">
+          <div>Ср</div>
+          <div class="lesson"></div>
+        </div>
+        <div class="day">
+          <div>Чт</div>
+          <div class="lesson"></div>
+          <div class="lesson"></div>
+        </div>
+        <div class="day">
+          <div>Пт</div>
+          <div class="lesson">
+            <div class="lesson__type">Лекция</div>
+            <div class="lesson__discipline">
+              Технологии программирования на платформе Java
+            </div>
+            <div class="lesson__time">8:00 - 9:30</div>
+            <div class="lesson__location">
+              <span>7 здание</span>
+              <span>333 ауд.</span>
+            </div>
+            <div class="lesson__lecturer">Тутбалин Павел Иннокентьевич</div>
+          </div>
+          <div class="lesson"></div>
+          <div class="lesson"></div>
+        </div>
+        <div class="day">
+          <div>Сб</div>
+        </div>
+      </div>
+      <h4>Расписание экзаменов</h4>
+      <div class="exams">
+        <div class="exam">
+          <div class="course">ООП</div>
+          <div class="date">19.01.23</div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

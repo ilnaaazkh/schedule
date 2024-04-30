@@ -1,0 +1,60 @@
+@import url("../shared/styles/shared.css");
+@import url("../css/admin.css");
+
+h1 {
+  font-size: 30px;
+  font-weight: bold;
+  margin-bottom: 50px;
+}
+
+.content {
+  width: 100%;
+  text-align: center;
+  padding: 10%;
+}
+
+.educator {
+  background: white;
+  height: 30px;
+  text-align: left;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 0px 10px;
+  height: 100%;
+  width: 100%;
+  cursor: pointer;
+}
+
+.row {
+  display: flex;
+  margin: 10px;
+  justify-content: center;
+}
+
+.delete {
+  background-color: #e65c5c;
+  color: white;
+  font-weight: bold;
+  padding: 10px;
+  border-radius: 5px;
+  text-align: center;
+  width: 150px;
+}
+
+.add {
+  background-color: #8ab6f9;
+  width: 100px;
+  height: 30px;
+  font-weight: bold;
+  color: white;
+  border-radius: 5px;
+  margin-top: 30px;
+}
+
+.search {
+  background: transparent;
+  border-bottom: 1px solid #8ab6f9;
+  width: 200px;
+  height: 30px;
+  margin-bottom: 10px;
+}

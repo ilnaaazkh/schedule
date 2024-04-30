@@ -1,6 +1,14 @@
-@import url(../shared/styles/shared.css);
+@import url("../shared/styles/shared.css");
+
+body {
+  padding: 10% 20%;
+}
 
 .container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
 }
 
 .main-title {
@@ -12,8 +20,9 @@
 
 .navigation {
   display: flex;
-  justify-content: left;
-  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
 }
 
 p {
@@ -35,6 +44,18 @@ img {
   border-radius: 20px;
   padding: 20px;
   margin: 0px 5px 10px 0px;
+}
+
+.card a {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.card a img {
+  display: block;
+  align-self: flex-end;
 }
 
 .teachers {

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../css/educators.css" />
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.js"
+      integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+      crossorigin="anonymous"
+    ></script>
+    <title>Преподаватели</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="sidebar">
+        <div class="action current-action">
+          <a href="">Преподаватели</a>
+        </div>
+        <div class="action">
+          <a href="">Дисциплины</a>
+        </div>
+        <div class="action">
+          <a href="">Кафедры</a>
+        </div>
+        <div class="action">
+          <a href="">Группы</a>
+        </div>
+      </div>
+      <div class="content">
+        <h1>Преподаватели</h1>
+        <input
+          type="text"
+          class="search"
+          placeholder="Поиск"
+          oninput="filterEducatorsList(event)"
+        />
+        <div class="educators"></div>
+        <button class="add">Добавить</button>
+      </div>
+    </div>
+
+    <div class="overlay">
+      <div class="popup delete-popup">
+        <a class="close" href="#">X</a>
+        <h2>Удаление пользователя</h2>
+        <p>Выдействительно хотите удалить этого пользователя?</p>
+        <button class="deleteConfirm">Да, удалить</button>
+      </div>
+      <div class="popup add-popup">
+        <a class="close" href="#">X</a>
+        <h2>Добавить преподавателя</h2>
+        <p>Введите данные преподавателя</p>
+        <form>
+          <label for="firstName"></label>
+          <input type="text" placeholder="Фамилия" />
+          <label for="middleName"></label>
+          <input type="text" placeholder="Имя" />
+          <label for="lastName"></label>
+          <input type="text" placeholder="Отчество" />
+          <label for="lastName"></label>
+          <input type="text" placeholder="Кафедра" />
+          <label for="department"></label>
+          <input type="text" placeholder="Ученое звание" />
+          <button type="submit">Создать</button>
+        </form>
+      </div>
+    </div>
+
+    <script src="../js/educators.js"></script>
+  </body>
+</html>

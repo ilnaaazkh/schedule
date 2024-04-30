@@ -1,0 +1,142 @@
+@import url("../shared/styles/shared.css");
+
+.container {
+  height: 100%;
+}
+
+body {
+  padding: 10% 20%;
+}
+
+h4 {
+  font-family: "K2N", sans-serif;
+  font-size: 36px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.input_group {
+  display: flex;
+  justify-content: space-between;
+  font-family: "K2N", sans-serif;
+  font-size: 24px;
+  font-weight: 200px;
+}
+
+input {
+  width: 150px;
+  height: 20px;
+  border-radius: 5px;
+  font-size: 20px;
+  font-weight: 200px;
+  padding: 10px;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+button {
+  font-size: 20px;
+  background: #eeaaeb;
+  color: #ffffff;
+  font-weight: 200px;
+  padding: 0px 10px;
+
+  border-radius: 10px;
+}
+
+.week {
+  background: #fff;
+  padding: 0px 10px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.circle {
+  height: 20px;
+  width: 20px;
+  border-radius: 100%;
+  background: #eeaaeb;
+  margin-left: 10px;
+}
+
+.schedule {
+  display: flex;
+  justify-content: space-around;
+  margin: 50px 0px;
+}
+
+.day {
+  background: #fff;
+  padding-top: 10px;
+  margin: 5px;
+  width: 100%;
+  text-align: center;
+  border-radius: 10px;
+  font-weight: 200;
+  font-size: 20px;
+  height: min-content;
+  min-height: 152px;
+}
+
+.exam {
+  display: flex;
+  justify-content: space-between;
+}
+
+.course {
+  background-color: #fff;
+  padding: 10px;
+  width: 100%;
+  margin: 5px 20px 5px 0px;
+  border-radius: 10px;
+  font-weight: 200;
+  font-size: 20px;
+}
+
+.date {
+  background-color: #fff;
+  padding: 10px;
+  margin: 5px 20px 5px 0px;
+  border-radius: 10px;
+  font-weight: 200;
+  font-size: 20px;
+}
+
+.exams {
+  margin: 50px;
+}
+
+.lesson {
+  height: 120px;
+  margin: 5px 0px 0px 0px;
+  border-radius: 10px;
+  background: #8ab6f9;
+  box-sizing: border-box;
+  padding: 5px;
+  font-size: 12px;
+  text-align: left;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.lesson__type {
+  text-align: right;
+}
+
+.lesson__discipline {
+  text-wrap: wrap;
+  max-height: 25px;
+  overflow: hidden;
+}
+
+.lesson__time {
+  text-align: left;
+  font-weight: 500;
+}
