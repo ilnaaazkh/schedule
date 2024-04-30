@@ -1,0 +1,87 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 2;
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+
+.active {
+  display: flex;
+}
+
+.popup {
+  position: fixed;
+  width: 600px;
+  max-width: 100%;
+  margin: 0 auto;
+  z-index: 3;
+  background-color: white;
+  min-height: 100px;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.popup h2 {
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.popup p {
+  font-size: 16px;
+  margin-bottom: 20px;
+  font-weight: 400;
+}
+
+.popup button {
+  width: 100px;
+  height: 30px;
+  background-color: #8ab6f9;
+  display: block;
+  color: white;
+  font-weight: 400;
+  border-radius: 5px;
+  margin: 0 auto;
+}
+
+.popup a {
+  text-decoration: none;
+  color: #000;
+  font-weight: bold;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+
+.popup input {
+  display: block;
+  width: 100%;
+  border: 1px #848181 solid;
+  border-radius: 10px;
+  height: 30px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.delete-popup {
+  display: none;
+}
+
+.delete-popup,
+.add-popup,
+.edit-popup {
+  display: none;
+}
+
+.delete-popup.active,
+.add-popup.active,
+.edit-popup.active {
+  display: block;
+}

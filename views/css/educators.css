@@ -1,5 +1,6 @@
 @import url("../shared/styles/shared.css");
 @import url("../css/admin.css");
+@import url("./popups.css");
 
 h1 {
   font-size: 30px;

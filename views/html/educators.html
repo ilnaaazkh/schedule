@@ -36,33 +36,42 @@
           oninput="filterEducatorsList(event)"
         />
         <div class="educators"></div>
-        <button class="add">Добавить</button>
+        <button class="add" onclick="showCreateModal()">Добавить</button>
       </div>
     </div>
 
     <div class="overlay">
       <div class="popup delete-popup">
-        <a class="close" href="#">X</a>
+        <a class="closePopup" href="#">X</a>
         <h2>Удаление пользователя</h2>
         <p>Выдействительно хотите удалить этого пользователя?</p>
-        <button class="deleteConfirm">Да, удалить</button>
+        <button class="confirm-delete">Да, удалить</button>
       </div>
+
       <div class="popup add-popup">
-        <a class="close" href="#">X</a>
+        <a class="closePopup" href="#">X</a>
         <h2>Добавить преподавателя</h2>
         <p>Введите данные преподавателя</p>
-        <form>
-          <label for="firstName"></label>
+        <form id="create-educator-form">
           <input type="text" placeholder="Фамилия" />
-          <label for="middleName"></label>
           <input type="text" placeholder="Имя" />
-          <label for="lastName"></label>
           <input type="text" placeholder="Отчество" />
-          <label for="lastName"></label>
           <input type="text" placeholder="Кафедра" />
-          <label for="department"></label>
           <input type="text" placeholder="Ученое звание" />
           <button type="submit">Создать</button>
+        </form>
+      </div>
+
+      <div class="popup edit-popup">
+        <a class="closePopup" href="#">X</a>
+        <h2>Редактировать данные преподавателя</h2>
+        <form id="create-educator-form">
+          <input type="text" placeholder="Фамилия" />
+          <input type="text" placeholder="Имя" />
+          <input type="text" placeholder="Отчество" />
+          <input type="text" placeholder="Кафедра" />
+          <input type="text" placeholder="Ученое звание" />
+          <button type="submit">Сохранить</button>
         </form>
       </div>
     </div>
