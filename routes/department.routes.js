@@ -5,7 +5,7 @@ const {
   getDepartmentById,
   deleteDepartment,
   updateDepartment,
-} = require("../controllers/department-contoller.js");
+} = require("../controllers/department.contoller.js");
 const router = express.Router();
 
 router.get("/", getDepartments);
