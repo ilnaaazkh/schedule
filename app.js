@@ -1,10 +1,6 @@
 require("dotenv").config();
 const express = require("express");
-const educatorRouter = require("./routes/educator.routes.js");
-const departmentRouter = require("./routes/department.routes.js");
-const groupRouter = require("./routes/group.routes.js");
-const disciplineRouter = require("./routes/discipline.routes.js");
-const buildingsRouter = require("./routes/building.routes.js");
+const routes = require("./routes/index.routes.js");
 const { connectToDatabase } = require("./models/index.js");
 
 const PORT = process.env.PORT || 3000;
@@ -12,12 +8,7 @@ const PORT = process.env.PORT || 3000;
 const app = express();
 
 app.use(express.json());
-
-app.use("/educator", educatorRouter);
-app.use("/departments", departmentRouter);
-app.use("/groups", groupRouter);
-app.use("/disciplines", disciplineRouter);
-app.use("/buildings", buildingsRouter);
+app.use("/", routes);
 
 const start = async () => {
   connectToDatabase()
