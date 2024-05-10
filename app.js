@@ -4,6 +4,7 @@ const educatorRouter = require("./routes/educator.routes.js");
 const departmentRouter = require("./routes/department.routes.js");
 const groupRouter = require("./routes/group.routes.js");
 const disciplineRouter = require("./routes/discipline.routes.js");
+const buildingsRouter = require("./routes/building.routes.js");
 const { connectToDatabase } = require("./models/index.js");
 
 const PORT = process.env.PORT || 3000;
@@ -15,7 +16,8 @@ app.use(express.json());
 app.use("/educator", educatorRouter);
 app.use("/departments", departmentRouter);
 app.use("/groups", groupRouter);
-app.use("/discipline", disciplineRouter);
+app.use("/disciplines", disciplineRouter);
+app.use("/buildings", buildingsRouter);
 
 const start = async () => {
   connectToDatabase()
