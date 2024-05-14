@@ -1,11 +1,9 @@
-//
-
-getEducators();
-
+educators = [];
 $(document).ready(function () {
   $(".closePopup").on("click", closeModal);
 
   $("#createEducatorForm").on("submit", createEducator);
+  getEducators();
 });
 
 function getEducators() {

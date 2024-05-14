@@ -1,58 +1,50 @@
-var educators = [
-  {
-    id: 0,
-    firstName: "Сотников",
-    middleName: "Сергей",
-    lastName: "Викторович",
-    department: "ПМИ",
-    academicDegree: "к.т.н",
-  },
-  {
-    id: 1,
-    firstName: "Тутубалин",
-    middleName: "Павел",
-    lastName: "Иннокентьевич",
-    department: "ПМИ",
-    academicDegree: "к.т.н",
-  },
-  {
-    id: 2,
-    firstName: "Иванов",
-    middleName: "Иван",
-    lastName: "Иванович",
-    department: "ИТ",
-    academicDegree: "д.т.н",
-  },
-  {
-    id: 3,
-    firstName: "Петров",
-    middleName: "Петр",
-    lastName: "Петрович",
-    department: "Биология",
-    academicDegree: "д.б.н",
-  },
-  {
-    id: 4,
-    firstName: "Сидоров",
-    middleName: "Алексей",
-    lastName: "Александрович",
-    department: "История",
-    academicDegree: "к.ф.н",
-  },
-  {
-    id: 5,
-    firstName: "Кузнецова",
-    middleName: "Екатерина",
-    lastName: "Ивановна",
-    department: "Литература",
-    academicDegree: "к.ф.н",
-  },
-];
+const Educator = require("../models/educator.js");
+const Department = require("../models/department.js");
 
-const getEducators = (_, res) => {
-  res.status(200).send(educators);
+// {
+//   firstName,
+//   middleName,
+//   lastName,
+//   department
+// }
+
+const createEducator = async (req, res) => {
+  try {
+    const body = req.body;
+
+    const department = await Department.findOne({ title: body.department });
+
+    const educator = await Educator.create({
+      firstName: body.firstName,
+      middleName: body.middleName,
+      lastName: body.lastName,
+      departmentId: department._id,
+    });
+
+    res.status(200).json(educator);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+const getEducators = async (_, res) => {
+  try {
+    const educators = await Educator.find().populate("departmentId");
+    const educatorsResponse = educators.map((educator) =>
+      Object({
+        firstName: educator.firstName,
+        middleName: educator.middleName,
+        lastName: educator.lastName,
+        departmentTitle: educator.departmentId.title,
+      })
+    );
+    res.status(200).json(educatorsResponse);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
 };
 
 module.exports = {
+  createEducator,
   getEducators,
 };

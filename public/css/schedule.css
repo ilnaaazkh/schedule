@@ -1,4 +1,4 @@
-@import url("../shared/styles/shared.css");
+@import url("./shared.css");
 
 .container {
   height: 100%;

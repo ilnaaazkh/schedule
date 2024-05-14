@@ -4,9 +4,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Кафедры</title>
-    <link rel="stylesheet" href="../shared/styles/shared.css" />
-    <link rel="stylesheet" href="../shared/styles/popups.css" />
-    <link rel="stylesheet" href="../shared/styles/admin.css" />
+    <link rel="stylesheet" href="./shared.css" />
+    <link rel="stylesheet" href="./popups.css" />
+    <link rel="stylesheet" href="./admin.css" />
   </head>
   <body>
     <div class="container">
@@ -14,10 +14,10 @@
         <div class="action">
           <a href="./educators.html">Преподаватели</a>
         </div>
-        <div class="action">
-          <a href="./disciplines.html">Дисциплины</a>
-        </div>
         <div class="action current-action">
+          <a href="#">Дисциплины</a>
+        </div>
+        <div class="action">
           <a href="./departments.html">Кафедры</a>
         </div>
         <div class="action">
@@ -28,33 +28,33 @@
         </div>
       </div>
       <div class="content">
-        <h1>Кафедры</h1>
+        <h1>Дисциплины</h1>
         <input type="text" class="search" placeholder="Поиск" oninput="" />
-        <div class="departments"></div>
+        <div class="disciplines"></div>
         <button class="add" onclick="showCreateModal()">Добавить</button>
       </div>
 
       <div class="overlay">
         <div class="popup delete-popup">
           <a href="#" class="closePopup">X</a>
-          <p>Вы действительно хотите удалить эту кафедру</p>
+          <p>Вы действительно хотите удалить эту дисциплину</p>
           <button>Удалить</button>
         </div>
         <div class="popup add-popup">
           <a href="#" class="closePopup">X</a>
-          <h2>Добавить новую кафедру</h2>
-          <p>Введите название новой кафедры</p>
+          <h2>Добавить новую дисципилину</h2>
+          <p>Введите название новой дисциплины</p>
           <form>
-            <input type="text" placeholder="Название кафедры" />
+            <input type="text" placeholder="Название дисциплины" />
           </form>
           <button>Создать</button>
         </div>
         <div class="popup edit-popup">
           <a href="#" class="closePopup">X</a>
           <a href="#" class="closePopup">X</a>
-          <h2>Редактирование кафедры</h2>
+          <h2>Редактирование дисциплины</h2>
           <form>
-            <input type="text" placeholder="Название кафедры" />
+            <input type="text" placeholder="Название дисциплины" />
           </form>
           <button>Сохранить</button>
         </div>
@@ -65,6 +65,6 @@
       integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
       crossorigin="anonymous"
     ></script>
-    <script src="../js/departments.js"></script>
+    <script src="../js/disciplines.js"></script>
   </body>
 </html>

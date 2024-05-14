@@ -8,6 +8,11 @@ const PORT = process.env.PORT || 3000;
 const app = express();
 
 app.use(express.json());
+app.use(express.static("./public/html"));
+app.use(express.static("./public/css", { extensions: ["css"] }));
+app.use(express.static("./public/imgs"));
+app.use(express.static("./public/js"));
+app.use(express.static("./public/shared"));
 app.use("/", routes);
 
 const start = async () => {
