@@ -1,4 +1,76 @@
-educators = [];
+educators = [
+  {
+    firstName: "Сотников",
+    middleName: "Сергей",
+    lastName: "Викторович",
+    academicDegree: "к.т.н",
+    department: "ПМИ",
+  },
+  {
+    firstName: "Иван",
+    middleName: "Петрович",
+    lastName: "Сидоров",
+    academicDegree: "д.ф.-м.н.",
+    department: "Физика",
+  },
+  {
+    firstName: "Елена",
+    middleName: "Александровна",
+    lastName: "Кузнецова",
+    academicDegree: "д.п.н.",
+    department: "Психология",
+  },
+  {
+    firstName: "Андрей",
+    middleName: "Николаевич",
+    lastName: "Козлов",
+    academicDegree: "д.т.н.",
+    department: "Информатика",
+  },
+  {
+    firstName: "Мария",
+    middleName: "Васильевна",
+    lastName: "Иванова",
+    academicDegree: "д.э.н.",
+    department: "Экономика",
+  },
+  {
+    firstName: "Алексей",
+    middleName: "Дмитриевич",
+    lastName: "Попов",
+    academicDegree: "к.ф.-м.н.",
+    department: "Математика",
+  },
+  {
+    firstName: "Ольга",
+    middleName: "Владимировна",
+    lastName: "Смирнова",
+    academicDegree: "к.п.н.",
+    department: "Педагогика",
+  },
+  {
+    firstName: "Дарья",
+    middleName: "Сергеевна",
+    lastName: "Ковалева",
+    academicDegree: "д.и.н.",
+    department: "Информационные технологии",
+  },
+  {
+    firstName: "Григорий",
+    middleName: "Андреевич",
+    lastName: "Морозов",
+    academicDegree: "к.б.н.",
+    department: "Биология",
+  },
+  {
+    firstName: "Наталья",
+    middleName: "Викторовна",
+    lastName: "Ткаченко",
+    academicDegree: "д.х.н.",
+    department: "Химия",
+  },
+];
+
 $(document).ready(function () {
   $(".closePopup").on("click", closeModal);
 
