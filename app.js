@@ -1,6 +1,6 @@
 require("dotenv").config();
 const express = require("express");
-const routes = require("./routes/index.routes.js");
+const apiRoutes = require("./routes/index.routes.js");
 const { connectToDatabase } = require("./models/index.js");
 
 const PORT = process.env.PORT || 3000;
@@ -12,8 +12,7 @@ app.use(express.static("./public/html"));
 app.use(express.static("./public/css", { extensions: ["css"] }));
 app.use(express.static("./public/imgs"));
 app.use(express.static("./public/js"));
-app.use(express.static("./public/shared"));
-app.use("/", routes);
+app.use("/api", apiRoutes);
 
 const start = async () => {
   connectToDatabase()

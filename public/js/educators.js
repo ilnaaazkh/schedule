@@ -136,10 +136,6 @@ function filterEducatorsList(event) {
 
 function showDeleteModal(id) {
   $(".overlay, .delete-popup").addClass("active");
-  $(".confirm-delete").on("click", () => {
-    deleteEducator(id);
-    closeModal();
-  });
 }
 
 function showCreateModal() {
@@ -153,4 +149,8 @@ function closeModal() {
 
 function showEditModal(id) {
   $(".overlay, .edit-popup").addClass("active");
+}
+
+function showDeleteModal(id) {
+  $(".overlay, .delete-popup").addClass("active");
 }

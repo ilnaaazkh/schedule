@@ -70,18 +70,16 @@
   margin-bottom: 10px;
 }
 
-.delete-popup {
-  display: none;
-}
-
 .delete-popup,
 .add-popup,
-.edit-popup {
+.edit-popup,
+.info-popup {
   display: none;
 }
 
 .delete-popup.active,
 .add-popup.active,
-.edit-popup.active {
+.edit-popup.active,
+.info-popup.active {
   display: block;
 }

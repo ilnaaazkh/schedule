@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Кафедры</title>
+    <title>Дисциплины</title>
     <link rel="stylesheet" href="./shared.css" />
     <link rel="stylesheet" href="./popups.css" />
     <link rel="stylesheet" href="./admin.css" />
@@ -29,7 +29,7 @@
       </div>
       <div class="content">
         <h1>Дисциплины</h1>
-        <input type="text" class="search" placeholder="Поиск" oninput="" />
+        <input type="text" id="search" placeholder="Поиск" oninput="" />
         <div class="disciplines"></div>
         <button class="add" onclick="showCreateModal()">Добавить</button>
       </div>
@@ -37,26 +37,29 @@
       <div class="overlay">
         <div class="popup delete-popup">
           <a href="#" class="closePopup">X</a>
-          <p>Вы действительно хотите удалить эту дисциплину</p>
-          <button>Удалить</button>
+          <p>Вы действительно хотите удалить эту дисциплину?</p>
+          <button class="deleteConfirm">Удалить</button>
         </div>
         <div class="popup add-popup">
           <a href="#" class="closePopup">X</a>
           <h2>Добавить новую дисципилину</h2>
           <p>Введите название новой дисциплины</p>
-          <form>
-            <input type="text" placeholder="Название дисциплины" />
+          <form id="create">
+            <input type="text" name="title" placeholder="Название дисциплины" />
+            <button type="submit">Создать</button>
           </form>
-          <button>Создать</button>
         </div>
         <div class="popup edit-popup">
           <a href="#" class="closePopup">X</a>
-          <a href="#" class="closePopup">X</a>
           <h2>Редактирование дисциплины</h2>
-          <form>
-            <input type="text" placeholder="Название дисциплины" />
+          <form id="edit">
+            <input type="text" name="title" placeholder="Название дисциплины" />
+            <button type="submit">Сохранить</button>
           </form>
-          <button>Сохранить</button>
+        </div>
+        <div class="popup info-popup">
+          <h2></h2>
+          <button onclick="closeModal()">Закрыть</button>
         </div>
       </div>
     </div>
@@ -65,6 +68,6 @@
       integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
       crossorigin="anonymous"
     ></script>
-    <script src="../js/disciplines.js"></script>
+    <script src="./disciplines.js"></script>
   </body>
 </html>
