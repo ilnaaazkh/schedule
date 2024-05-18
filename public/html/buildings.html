@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Дисциплины</title>
+    <title>Учебные здания</title>
     <link rel="stylesheet" href="./shared.css" />
     <link rel="stylesheet" href="./popups.css" />
     <link rel="stylesheet" href="./admin.css" />
@@ -14,7 +14,7 @@
         <div class="action">
           <a href="./educators.html">Преподаватели</a>
         </div>
-        <div class="action current-action">
+        <div class="action">
           <a href="#">Дисциплины</a>
         </div>
         <div class="action">
@@ -23,38 +23,40 @@
         <div class="action">
           <a href="">Группы</a>
         </div>
-        <div class="action"><a href="">Здания</a></div>
+        <div class="action current-action"><a href="">Здания</a></div>
         <div class="action">
           <a href="">Расписание</a>
         </div>
       </div>
+
       <div class="content">
-        <h1>Дисциплины</h1>
+        <h1>Учебные здания</h1>
         <input type="text" id="search" placeholder="Поиск" />
-        <div class="disciplines"></div>
-        <button class="add" onclick="showCreateModal()">Добавить</button>
+        <div class="buildings"></div>
+        <button class="add">Добавить</button>
       </div>
 
       <div class="overlay">
         <div class="popup delete-popup">
           <a href="#" class="closePopup">X</a>
-          <p>Вы действительно хотите удалить эту дисциплину?</p>
-          <button class="deleteConfirm">Удалить</button>
-        </div>
-        <div class="popup add-popup">
-          <a href="#" class="closePopup">X</a>
-          <h2>Добавить новую дисципилину</h2>
-          <p>Введите название новой дисциплины</p>
-          <form id="create">
-            <input type="text" name="title" placeholder="Название дисциплины" />
-            <button type="submit">Создать</button>
+          <form id="deleteForm">
+            <p>Вы действительно хотите удалить это здание?</p>
+            <input type="hidden" name="id" />
+            <button type="submit" class="deleteConfirm">Удалить</button>
           </form>
         </div>
         <div class="popup edit-popup">
           <a href="#" class="closePopup">X</a>
-          <h2>Редактирование дисциплины</h2>
-          <form id="edit">
-            <input type="text" name="title" placeholder="Название дисциплины" />
+          <form id="editCreateForm">
+            <h2></h2>
+            <input required type="hidden" name="id" />
+            <input
+              required
+              type="number"
+              name="number"
+              placeholder="Номер здания"
+            />
+            <input required type="text" name="address" placeholder="Адрес" />
             <button type="submit">Сохранить</button>
           </form>
         </div>
@@ -64,11 +66,12 @@
         </div>
       </div>
     </div>
+
     <script
       src="https://code.jquery.com/jquery-3.7.1.js"
       integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
       crossorigin="anonymous"
     ></script>
-    <script src="./disciplines.js"></script>
+    <script src="./buildings.js"></script>
   </body>
 </html>

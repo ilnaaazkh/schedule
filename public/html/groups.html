@@ -3,9 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Администратор</title>
-    <link rel="stylesheet" href="./admin.css" />
+    <title>Группы</title>
     <link rel="stylesheet" href="./shared.css" />
+    <link rel="stylesheet" href="./popups.css" />
+    <link rel="stylesheet" href="./admin.css" />
   </head>
   <body>
     <div class="container">
@@ -17,13 +18,21 @@
           <a href="./disciplines.html">Дисциплины</a>
         </div>
         <div class="action">
-          <a href="">Кафедры</a>
+          <a href="./departments.html">Кафедры</a>
         </div>
-        <div class="action">
-          <a href="">Группы</a>
+        <div class="action current-action">
+          <a href="#">Группы</a>
         </div>
         <div class="action">Здания</div>
-        <div class="action">Расписание</div>
+        <div class="action">
+          <a href="">Расписание</a>
+        </div>
+      </div>
+      <div class="content">
+        <h1>Группы</h1>
+        <input type="text" id="search" placeholder="Поиск" />
+        <div class="groups"></div>
+        <button class="add">Добавить</button>
       </div>
     </div>
   </body>
