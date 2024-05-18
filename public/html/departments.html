@@ -30,34 +30,40 @@
       </div>
       <div class="content">
         <h1>Кафедры</h1>
-        <input type="text" class="search" placeholder="Поиск" oninput="" />
+        <input type="text" id="search" placeholder="Поиск" oninput="" />
         <div class="departments"></div>
-        <button class="add" onclick="showCreateModal()">Добавить</button>
+        <button class="add">Добавить</button>
       </div>
 
       <div class="overlay">
         <div class="popup delete-popup">
           <a href="#" class="closePopup">X</a>
-          <p>Вы действительно хотите удалить эту кафедру</p>
-          <button>Удалить</button>
-        </div>
-        <div class="popup add-popup">
-          <a href="#" class="closePopup">X</a>
-          <h2>Добавить новую кафедру</h2>
-          <p>Введите название новой кафедры</p>
-          <form>
-            <input type="text" placeholder="Название кафедры" />
+          <form id="deleteForm">
+            <p>Вы действительно хотите удалить эту кафедру</p>
+            <input type="hidden" name="id" />
+            <button type="submit" class="deleteConfirm">Удалить</button>
           </form>
-          <button>Создать</button>
         </div>
+
+        <div class="popup info-popup">
+          <h2></h2>
+          <button onclick="closeModal()">Закрыть</button>
+        </div>
+
         <div class="popup edit-popup">
           <a href="#" class="closePopup">X</a>
-          <a href="#" class="closePopup">X</a>
-          <h2>Редактирование кафедры</h2>
-          <form>
-            <input type="text" placeholder="Название кафедры" />
+          <form id="editCreateForm">
+            <h2></h2>
+            <input type="hidden" required name="id" />
+            <input type="text" name="title" required placeholder="Название" />
+            <input
+              type="text"
+              name="short_title"
+              required
+              placeholder="Аббревиатура"
+            />
+            <button type="submit">Сохранить</button>
           </form>
-          <button>Сохранить</button>
         </div>
       </div>
     </div>
@@ -66,6 +72,6 @@
       integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
       crossorigin="anonymous"
     ></script>
-    <script src="../js/departments.js"></script>
+    <script src="./departments.js"></script>
   </body>
 </html>

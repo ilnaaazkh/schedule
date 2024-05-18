@@ -105,7 +105,7 @@ async function updateBuilding(building) {
     address: building.address,
   };
 
-  let response = await fetch(baseUrl + `/${id}`, {
+  let response = await fetch(`${baseUrl}/${id}`, {
     method: "PUT",
     headers: {
       Accept: "application/json",
@@ -127,6 +127,7 @@ async function updateBuilding(building) {
 function closeModal() {
   $(".overlay").removeClass("active");
   $(".overlay").children().removeClass("active");
+  $("form>input").val("");
 }
 
 async function onDeleteSubmited(e) {
