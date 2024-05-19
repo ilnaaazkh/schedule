@@ -10,6 +10,7 @@ $(document).ready(async function () {
 
   $("#deleteForm").on("submit", onDeleteSubmited);
   $("#editCreateForm").on("submit", onEditCreateConfirmed);
+  $("#search").on("input", searchDept);
 });
 
 async function getDepartments() {
@@ -213,4 +214,13 @@ function closeModal() {
 function showInfoModal(message) {
   $(".overlay, .info-popup").addClass("active");
   $(".popup.info-popup h2").text(message);
+}
+
+function searchDept() {
+  let searchStr = $("#search").val().toLowerCase();
+  renderContent(
+    departments.filter((d) =>
+      (d.title + " " + d.short_title).toLowerCase().includes(searchStr)
+    )
+  );
 }
