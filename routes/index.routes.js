@@ -6,7 +6,7 @@ const disciplineRouter = require("./discipline.routes.js");
 const buildingsRouter = require("./building.routes.js");
 const router = express.Router();
 
-router.use("/educator", educatorRouter);
+router.use("/educators", educatorRouter);
 router.use("/departments", departmentRouter);
 router.use("/groups", groupRouter);
 router.use("/disciplines", disciplineRouter);
