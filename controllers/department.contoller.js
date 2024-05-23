@@ -1,4 +1,5 @@
 const Department = require("../models/department");
+const Educator = require("../models/educator");
 
 const getDepartments = async (_, res) => {
   try {
@@ -39,6 +40,7 @@ const deleteDepartment = async (req, res) => {
       return res.status(404).json({ message: "Department not found" });
     }
     res.status(200).json({ message: "Department deleted successfully" });
+    cascadeDelete(id);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
@@ -65,3 +67,11 @@ module.exports = {
   deleteDepartment,
   updateDepartment,
 };
+
+async function cascadeDelete(id) {
+  try {
+    Educator.deleteMany({});
+  } catch (error) {
+    console.log(error.message);
+  }
+}

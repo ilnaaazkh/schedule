@@ -8,9 +8,10 @@
       integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
       crossorigin="anonymous"
     ></script>
-    <link rel="stylesheet" href="./admin.css" />
-    <link rel="stylesheet" href="./popups.css" />
     <link rel="stylesheet" href="./shared.css" />
+    <link rel="stylesheet" href="./popups.css" />
+    <link rel="stylesheet" href="./admin.css" />
+    <link rel="stylesheet" href="./controls.css" />
     <title>Преподаватели</title>
   </head>
   <body>
@@ -35,50 +36,44 @@
       </div>
       <div class="content">
         <h1>Преподаватели</h1>
-        <input
-          type="text"
-          class="search"
-          placeholder="Поиск"
-          oninput="filterEducatorsList(event)"
-        />
+        <input id="search" type="text" class="search" placeholder="Поиск" />
         <div class="educators"></div>
-        <button class="add" onclick="showCreateModal()">Добавить</button>
+        <button class="add">Добавить</button>
       </div>
     </div>
 
     <div class="overlay">
       <div class="popup delete-popup">
         <a class="closePopup" href="#">X</a>
-        <h2>Удаление пользователя</h2>
-        <p>Выдействительно хотите удалить этого пользователя?</p>
-        <button class="confirm-delete">Да, удалить</button>
-      </div>
-
-      <div class="popup add-popup">
-        <a class="closePopup" href="#">X</a>
-        <h2>Добавить преподавателя</h2>
-        <p>Введите данные преподавателя</p>
-        <form id="create-educator-form">
-          <input type="text" placeholder="Фамилия" />
-          <input type="text" placeholder="Имя" />
-          <input type="text" placeholder="Отчество" />
-          <input type="text" placeholder="Кафедра" />
-          <input type="text" placeholder="Ученое звание" />
-          <button type="submit">Создать</button>
+        <form id="delete-form">
+          <h2>Удаление преподавателя</h2>
+          <p>Вы действительно хотите удалить этого преподавателя?</p>
+          <input type="hidden" name="id" required />
+          <button class="deleteConfirm" type="submit">Да, удалить</button>
         </form>
       </div>
 
       <div class="popup edit-popup">
         <a class="closePopup" href="#">X</a>
-        <h2>Редактировать данные преподавателя</h2>
-        <form id="create-educator-form">
-          <input type="text" placeholder="Фамилия" />
-          <input type="text" placeholder="Имя" />
-          <input type="text" placeholder="Отчество" />
-          <input type="text" placeholder="Кафедра" />
-          <input type="text" placeholder="Ученое звание" />
+        <form id="create-edit-form">
+          <h2></h2>
+          <p>Введите данные преподавателя</p>
+          <input type="hidden" name="id" />
+          <input type="text" name="middleName" required placeholder="Фамилия" />
+          <input type="text" name="firstName" required placeholder="Имя" />
+          <input type="text" name="lastName" required placeholder="Отчество" />
+          <div class="select-container">
+            <select name="departmentId" required>
+              <option disabled selected value="">Выберите кафедру</option>
+            </select>
+          </div>
           <button type="submit">Сохранить</button>
         </form>
+      </div>
+
+      <div class="popup info-popup">
+        <h2></h2>
+        <button onclick="closeModal()">Закрыть</button>
       </div>
     </div>
 

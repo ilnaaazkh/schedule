@@ -1,0 +1,63 @@
+/* Основные стили для контейнера */
+.select-container {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+/* Стили для самого select элемента */
+.select-container select {
+  width: 100%;
+  padding: 0px 12px;
+  border-radius: 10px;
+  border: 1px #848181 solid;
+  background-color: white;
+  color: #333;
+  font-size: 14px;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  appearance: none; /* Убираем стандартный стрелку браузера */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+/* Стили для стрелки вниз */
+.select-container::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 12px;
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid #333;
+  pointer-events: none;
+  transform: translateY(-50%);
+}
+
+/* Стили при фокусе на select */
+.select-container select:focus {
+  outline: none;
+}
+
+/* Стили для элемента option */
+.select-container select option {
+  padding: 0px;
+}
+
+/* Стили для disabled options */
+.select-container select option:disabled {
+  color: #999;
+}
+
+/* Дополнительные стили для placeholder */
+.select-container select option[value=""][disabled] {
+  display: none;
+}
+
+select {
+  height: 30px;
+  padding: 0px;
+}
