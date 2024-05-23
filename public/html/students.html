@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="./schedule.css" />
   </head>
   <body>
+    <a href="#" onclick="window.history.back(); return false;" class="backlink"> &#8249 Назад</a>
     <div class="container">
       <h4>Расписание студентов</h4>
       <div class="input_group">
@@ -16,8 +17,9 @@
           <button>Найти</button>
         </div>
         <div class="week">
-          <span>Чётная</span>
-          <div class="circle"></div>
+          <p id="weekLabel"></p>
+          <input type="checkbox" id="week" />
+          <label for="week" class="toggle"></label>
         </div>
       </div>
       <div class="schedule">
@@ -59,13 +61,12 @@
           <div>Сб</div>
         </div>
       </div>
-      <h4>Расписание экзаменов</h4>
-      <div class="exams">
-        <div class="exam">
-          <div class="course">ООП</div>
-          <div class="date">19.01.23</div>
-        </div>
-      </div>
     </div>
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.js"
+      integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+      crossorigin="anonymous"
+    ></script>
+    <script src="./schedule.js"></script>
   </body>
 </html>

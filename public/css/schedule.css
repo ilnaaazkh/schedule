@@ -1,5 +1,12 @@
 @import url("./shared.css");
 
+.backlink {
+  position: fixed;
+  left: 30px;
+  top: 20px;
+  color: black;
+}
+
 .container {
   height: 100%;
 }
@@ -12,7 +19,7 @@ h4 {
   font-family: "K2N", sans-serif;
   font-size: 36px;
   font-weight: bold;
-  margin-bottom: 20px;
+  margin-bottom: 80px;
 }
 
 .input_group {
@@ -48,20 +55,52 @@ button {
   border-radius: 10px;
 }
 
-.week {
-  background: #fff;
-  padding: 0px 10px;
-  border-radius: 10px;
-  display: flex;
-  align-items: center;
-}
-
 .circle {
   height: 20px;
   width: 20px;
   border-radius: 100%;
   background: #eeaaeb;
   margin-left: 10px;
+}
+
+.week {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.toggle {
+  background-color: #8ab6f9;
+  width: 60px;
+  height: 30px;
+  border-radius: 200px;
+  cursor: pointer;
+  position: relative;
+  transition: 0.3s;
+  margin-left: 10px;
+}
+
+.toggle::before {
+  position: absolute;
+  content: "";
+  background-color: #fff;
+  width: 26px;
+  height: 26px;
+  margin: 2px;
+  border-radius: 50%;
+  transition: 0.3s;
+}
+
+#week:checked + .toggle {
+  background-color: #9bf3a4;
+}
+
+#week:checked + .toggle::before {
+  transform: translateX(30px);
+}
+
+#week {
+  display: none;
 }
 
 .schedule {
