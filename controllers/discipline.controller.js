@@ -24,7 +24,6 @@ const getDisciplineById = async (req, res) => {
 
 const createDiscipline = async (req, res) => {
   try {
-    console.log(req.body);
     const discipline = await Discipline.create(req.body);
     res.status(200).json(discipline);
   } catch (error) {

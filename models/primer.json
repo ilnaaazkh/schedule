@@ -1,0 +1,31 @@
+{
+  "educator": {
+    "_id": "60b8d295f1e4f820d8f5c3a9",
+    "firstName": "Иван",
+    "middleName": "Иванович",
+    "lastName": "Иванов"
+  },
+  "lesson_type": "Лекция",
+  "lesson_number": 1,
+  "building": {
+    "_id": "60b8d295f1e4f820d8f5c3b0",
+    "address": "ул. Ленина, д. 1"
+  },
+  "parity": "Чётная",
+  "room_number": 101,
+  "day_of_week": 1,
+  "discipline": {
+    "_id": "60b8d295f1e4f820d8f5c3b5",
+    "title": "Математика"
+  },
+  "group": [
+    {
+      "_id": "60b8d295f1e4f820d8f5c3c1",
+      "group_code": "Группа 1"
+    },
+    {
+      "_id": "60b8d295f1e4f820d8f5c3c2",
+      "group_code": "Группа 2"
+    }
+  ]
+}
