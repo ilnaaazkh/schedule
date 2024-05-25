@@ -74,13 +74,15 @@
 .delete-popup,
 .add-popup,
 .edit-popup,
-.info-popup {
+.info-popup,
+.lesson-details {
   display: none;
 }
 
 .delete-popup.active,
 .add-popup.active,
 .edit-popup.active,
-.info-popup.active {
+.info-popup.active,
+.lesson-details.active {
   display: block;
 }

@@ -154,7 +154,6 @@ button {
   height: 120px;
   margin: 5px 0px 0px 0px;
   border-radius: 10px;
-  background: #8ab6f9;
   box-sizing: border-box;
   padding: 5px;
   font-size: 12px;
@@ -163,6 +162,7 @@ button {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+  cursor: pointer;
 }
 
 .lesson__type {
@@ -178,4 +178,14 @@ button {
 .lesson__time {
   text-align: left;
   font-weight: 500;
+}
+
+.red-border {
+  border: red 1px solid;
+}
+
+.red-border::after {
+  content: "Такая группа не существует";
+  color: red;
+  font-size: 12px;
 }

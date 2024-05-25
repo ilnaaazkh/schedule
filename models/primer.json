@@ -1,31 +1,32 @@
 {
   "educator": {
-    "_id": "60b8d295f1e4f820d8f5c3a9",
-    "firstName": "Иван",
-    "middleName": "Иванович",
-    "lastName": "Иванов"
+    "_id": "664f292323059a5a2568f82a",
+    "firstName": "Сергей",
+    "middleName": "Сотников ",
+    "lastName": "Викторович"
   },
   "lesson_type": "Лекция",
   "lesson_number": 1,
   "building": {
-    "_id": "60b8d295f1e4f820d8f5c3b0",
-    "address": "ул. Ленина, д. 1"
+    "_id": "663e66732b24cc51c0d0fd8d",
+    "number": 1,
+    "address": "г. Казань, ул. Карла Маркса, д. 10"
   },
   "parity": "Чётная",
   "room_number": 101,
   "day_of_week": 1,
   "discipline": {
-    "_id": "60b8d295f1e4f820d8f5c3b5",
-    "title": "Математика"
+    "_id": "6645afefc5b01b9fe7da3863",
+    "title": "Теория информации и кодирования"
   },
-  "group": [
+  "groups": [
     {
-      "_id": "60b8d295f1e4f820d8f5c3c1",
-      "group_code": "Группа 1"
+      "_id": "664a5de3a2de580e6e48afc4",
+      "group_code": "4317"
     },
     {
-      "_id": "60b8d295f1e4f820d8f5c3c2",
-      "group_code": "Группа 2"
+      "_id": "663e1a6f595bd2864a568398",
+      "group_code": "4318"
     }
   ]
 }

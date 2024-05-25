@@ -101,7 +101,7 @@ const lessonScheme = new Schema(
     parity: {
       type: String,
       required: true,
-      enum: ["Чётная", "Нечетная", "Любая"],
+      enum: ["Чётная", "Нечётная", "Любая"],
     },
     room_number: {
       type: Number,
@@ -115,7 +115,7 @@ const lessonScheme = new Schema(
       type: disciplineScheme,
       required: true,
     },
-    group: [
+    groups: [
       {
         type: groupScheme,
         required: true,
@@ -135,7 +135,7 @@ lessonScheme.pre("save", async function (next) {
       _id: this.discipline._id,
     });
     const groupsExist = await Promise.all(
-      this.group.map((group) => Group.exists({ _id: group._id }))
+      this.groups.map((group) => Group.exists({ _id: group._id }))
     );
 
     if (!educatorExists) {

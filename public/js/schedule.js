@@ -1,3 +1,16 @@
+const days_of_weeks = ["Пн", "Вт", "Ср", "Чт", "Пт", "Сб"];
+lessonDurations = [
+  "0",
+  "8:00 - 9:30",
+  "9:40 - 11:10",
+  "11:20 - 12:50",
+  "13:30 - 15:00",
+  "15:10 - 16:40",
+  "16:50 - 18:20",
+];
+
+const lessonCardColors = ["#F9B189", "#9BF3A4", "#EEAAEB", "#8AB6F9"];
+
 $(document).ready(function () {
   if (getDateWeek(new Date()) % 2 == 1) {
     $("#week").prop("checked", true);
@@ -27,4 +40,20 @@ function getDateWeek(date) {
     : currentDate > nextMonday
     ? Math.ceil((currentDate - nextMonday) / (24 * 3600 * 1000) / 7)
     : 1;
+}
+
+function initSchedule() {
+  const $schedule = $(".schedule");
+  $schedule.empty();
+
+  for (weekday of days_of_weeks) {
+    const day = $("<div>").addClass("day");
+    day.append($("<div>").text(weekday));
+    $schedule.append(day);
+  }
+}
+
+function getRandomLessonCardColor() {
+  const randomIndex = Math.floor(Math.random() * lessonCardColors.length);
+  return lessonCardColors[randomIndex];
 }
