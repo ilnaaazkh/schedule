@@ -1,21 +1,21 @@
 {
-  "educator": {
+  + "educator": {
     "_id": "664f292323059a5a2568f82a",
     "firstName": "Сергей",
     "middleName": "Сотников ",
     "lastName": "Викторович"
   },
-  "lesson_type": "Лекция",
-  "lesson_number": 1,
-  "building": {
+  +"lesson_type": "Лекция",
+  + "lesson_number": 1,
+  + "building": {
     "_id": "663e66732b24cc51c0d0fd8d",
     "number": 1,
     "address": "г. Казань, ул. Карла Маркса, д. 10"
   },
-  "parity": "Чётная",
-  "room_number": 101,
-  "day_of_week": 1,
-  "discipline": {
+  + "parity": "Чётная",
+  + "room_number": 101,
+  + "day_of_week": 1,
+  + "discipline": {
     "_id": "6645afefc5b01b9fe7da3863",
     "title": "Теория информации и кодирования"
   },

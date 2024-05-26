@@ -46,9 +46,11 @@ function initSchedule() {
   const $schedule = $(".schedule");
   $schedule.empty();
 
-  for (weekday of days_of_weeks) {
-    const day = $("<div>").addClass("day");
-    day.append($("<div>").text(weekday));
+  for (let i = 0; i < days_of_weeks.length; i++) {
+    const day = $("<div>")
+      .addClass("day")
+      .attr("data-day", i + 1);
+    day.append($("<div>").text(days_of_weeks[i]));
     $schedule.append(day);
   }
 }

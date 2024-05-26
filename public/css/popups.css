@@ -60,7 +60,8 @@
   top: 10px;
 }
 
-.popup input {
+.popup input,
+.popup select {
   display: block;
   width: 100%;
   border: 1px #848181 solid;
@@ -85,4 +86,9 @@
 .info-popup.active,
 .lesson-details.active {
   display: block;
+}
+
+.form-group {
+  display: flex;
+  justify-content: space-between;
 }
