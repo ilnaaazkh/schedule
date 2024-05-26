@@ -57,3 +57,8 @@ function getRandomLessonCardColor() {
   const randomIndex = Math.floor(Math.random() * lessonCardColors.length);
   return lessonCardColors[randomIndex];
 }
+
+function closeModal() {
+  $(".overlay").removeClass("active");
+  $(".overlay").children().removeClass("active");
+}

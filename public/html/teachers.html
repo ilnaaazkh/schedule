@@ -5,49 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Расписание преподавателей</title>
     <link rel="stylesheet" href="./schedule.css" />
+    <link rel="stylesheet" href="./popups.css">
   </head>
   <body>
-    <a href="#" onclick="window.history.back(); return false;" class="backlink"> &#8249 Назад</a>
+    <a href="/" class="backlink"> &#8249 Назад</a>
     <div class="container">
       <h4>Расписание преподавателей</h4>
-      <div class="input_group">
+      <form id="find-by-educator" class="input_group">
         <div>
           <span>ФИО преподавателя:</span>
-          <input type="text" />
+          <input type="text" name="educator_name" list="teachers"/>
           <button>Найти</button>
         </div>
         <div class="week">
           <p id="weekLabel"></p>
-          <input type="checkbox" id="week" />
+          <input type="checkbox" id="week" name="week_parity"/>
           <label for="week" class="toggle"></label>
         </div>
-      </div>
+      </form>
       <div class="schedule">
-        <div class="day">
-          <div>Пн</div>
-          <div class="lesson"></div>
-          <div class="lesson"></div>
-        </div>
-        <div class="day">
-          <div>Вт</div>
-        </div>
-        <div class="day">
-          <div>Ср</div>
-          <div class="lesson"></div>
-        </div>
-        <div class="day">
-          <div>Чт</div>
-          <div class="lesson"></div>
-          <div class="lesson"></div>
-        </div>
-        <div class="day">
-          <div>Пт</div>
-          <div class="lesson"></div>
-          <div class="lesson"></div>
-          <div class="lesson"></div>
-        </div>
-        <div class="day">
-          <div>Сб</div>
+        
+      </div>
+      <div class="overlay">
+        <div class="popup lesson-details">
+            
         </div>
       </div>
     </div>
@@ -57,5 +38,6 @@
       crossorigin="anonymous"
     ></script>
     <script src="./schedule.js"></script>
+    <script src="./teachers.js"></script>
   </body>
 </html>

@@ -150,8 +150,3 @@ function showDetails() {
 
   $(".overlay, .lesson-details").addClass("active");
 }
-
-function closeModal() {
-  $(".overlay").removeClass("active");
-  $(".overlay").children().removeClass("active");
-}
