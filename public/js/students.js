@@ -2,11 +2,27 @@ const baseUrl = "/api/lessons";
 let lessons = [];
 let groups = [];
 $(document).ready(async function () {
-  groups = await getGroups();
-  await loadGroupDatalist(groups);
   $("#find-by-group").on("submit", onSearchByGroupSubmitted);
   $("input[name='group_code']").on("input", function () {
     $(this).removeClass("red-border");
+  });
+
+  $(".group-select").select2({
+    placeholder: "4317",
+    ajax: {
+      url: "/api/groups",
+      dataType: "json",
+      delay: 250,
+      processResults: function (data) {
+        return {
+          results: data.map((group) => ({
+            id: group.group_code,
+            text: group.group_code,
+          })),
+        };
+      },
+      cache: true,
+    },
   });
 });
 
@@ -31,18 +47,14 @@ async function onSearchByGroupSubmitted(e) {
   e.preventDefault();
 
   const form = $("#find-by-group");
-  const group_code = form.find("input[name='group_code']").val();
+  const group_code = $(".group-select").val();
   const week_parity = form.find("input[name='week_parity']").is(":checked")
     ? "Нечётная"
     : "Чётная";
 
-  let result = false;
-  if (groups.some((g) => g.group_code == group_code)) {
-    result = await getLessonsByGroup(group_code, week_parity);
-  } else {
-    form.find("input[name='group_code']").addClass("red-border");
-    return;
-  }
+  console.log(group_code);
+
+  let result = await getLessonsByGroup(group_code, week_parity);
 
   if (result) {
     renderContent();

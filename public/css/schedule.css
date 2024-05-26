@@ -1,5 +1,9 @@
 @import url("./shared.css");
 
+.input-select {
+  width: 150px;
+}
+
 .backlink {
   position: fixed;
   left: 30px;
