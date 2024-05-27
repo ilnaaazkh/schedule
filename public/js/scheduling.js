@@ -17,6 +17,11 @@ $(document).ready(async function () {
     },
     cache: true,
   });
+  renderDisciplinesSelect();
+  renderEducatorSelect();
+  renderTimeSelect();
+  renderBuildingSelect();
+  renderGroupsSelect();
 });
 
 async function getLessonsByGroup(group_code, week_parity) {
@@ -192,11 +197,16 @@ function showCreateEditModal() {
     .val($("#week").is(":checked") ? "Нечётная" : "Чётная");
   form.find("input[name='day_of_week']").val(day);
 
-  renderDisciplinesSelect();
-  renderEducatorSelect();
-  renderTimeSelect();
-  renderBuildingSelect();
-  renderGroupsSelect();
+  if (id) {
+    let lesson = lessons.find((l) => l._id == id);
+    $("#time").val(lesson.lesson_number);
+    $("#lesson-type").val(lesson.lesson_type);
+    $("#room-number").val(lesson.room_number);
+
+    console.log(lesson.discipline.title);
+    $(".discipline-select").val(lesson.discipline.title);
+    $(".discipline-select").trigger("change");
+  }
 
   $(".overlay, .edit-popup").addClass("active");
 }
@@ -548,4 +558,8 @@ function closeModal() {
   $(".overlay").removeClass("active");
   $(".overlay").children().removeClass("active");
   $(".control>input").val("");
+  $(".control>select").val("");
+  $(".discipline-select, .educator-select, .building-select, .groups-select")
+    .val(null)
+    .trigger("change");
 }
