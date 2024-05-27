@@ -202,10 +202,6 @@ function showCreateEditModal() {
     $("#time").val(lesson.lesson_number);
     $("#lesson-type").val(lesson.lesson_type);
     $("#room-number").val(lesson.room_number);
-
-    console.log(lesson.discipline.title);
-    $(".discipline-select").val(lesson.discipline.title);
-    $(".discipline-select").trigger("change");
   }
 
   $(".overlay, .edit-popup").addClass("active");
