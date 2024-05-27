@@ -1,18 +1,22 @@
 const baseUrl = "/api/lessons";
 let lessons = [];
-let groups = [];
+
 $(document).ready(async function () {
-  groups = await getGroups();
-  await loadGroupDatalist(groups);
-
   $(".closePopup").on("click", closeModal);
-
   $("#find-by-group").on("submit", onSearchByGroupSubmitted);
-  $("input[name='group_code']").on("input", function () {
-    $(this).removeClass("red-border");
-  });
-
   $("#delete-form").on("submit", onDeleteSubmited);
+  $("edit-create-lesson-from").on("submit", onEditCreateSubmited);
+
+  $(".group-select").select2({
+    placeholder: "4317",
+    ajax: {
+      url: "/api/groups",
+      dataType: "json",
+      delay: 250,
+      processResults: mapGroupsToOptions,
+    },
+    cache: true,
+  });
 
   await loadEducatorsOnEditCreateForm();
   await loadBuildingsOnEditCreateForm();
@@ -39,18 +43,12 @@ async function onSearchByGroupSubmitted(e) {
   e.preventDefault();
 
   const form = $("#find-by-group");
-  const group_code = form.find("input[name='group_code']").val();
+  const group_code = $(".group-select").val();
   const week_parity = form.find("input[name='week_parity']").is(":checked")
     ? "Нечётная"
     : "Чётная";
 
-  let result = false;
-  if (groups.some((g) => g.group_code == group_code)) {
-    result = await getLessonsByGroup(group_code, week_parity);
-  } else {
-    form.find("input[name='group_code']").addClass("red-border");
-    return;
-  }
+  result = await getLessonsByGroup(group_code, week_parity);
 
   if (result) {
     renderContent();
@@ -70,6 +68,7 @@ function renderContent() {
     const lessonCard = $("<div>")
       .addClass("lesson")
       .attr("data-id", lesson._id)
+      .attr("data-day", lesson.day_of_week)
       .css("background-color", getRandomLessonCardColor());
 
     const lessonHeader = $("<div>").addClass("header");
@@ -125,56 +124,6 @@ function renderContent() {
         .attr("data-day", $day.data("day"));
       $day.append(addBtn);
     });
-}
-
-async function getGroups() {
-  const response = await fetch("/api/groups", {
-    method: "GET",
-    headers: {
-      Accept: "application/json",
-    },
-  });
-
-  if (response.ok) {
-    let result = await response.json();
-    return result;
-  }
-  return [];
-}
-
-async function loadGroupDatalist(groups) {
-  const groups_input = $("input[name='group_code']");
-
-  const datalist = $("<datalist id='groups'>");
-
-  for (group of groups) {
-    const opt = $("<option>").val(group.group_code).text(group.group_code);
-    datalist.append(opt);
-  }
-  groups_input.after(datalist);
-}
-
-//Удалить потом
-function showDetails() {
-  const id = $(this).data("id");
-  const lesson = lessons.find((lesson) => lesson._id == id);
-
-  const content = $(`
-  <h2>Подробности</h2>
-  <a href="#" class="closePopup" onclick='closeModal()'>X</a>
-  <div><b>Дисциплина</b>: ${lesson.discipline.title} (${lesson.lesson_type})</div>
-  <div><b>Преподаватель</b>: ${lesson.educator.middleName} ${lesson.educator.firstName} ${lesson.educator.lastName}</div>
-  <div><b>Аудитория</b>: ${lesson.room_number}</div>
-  <div><b>Здание</b>: ${lesson.building.number}</div>
-  <div><b>Адрес</b>: ${lesson.building.address}</div>
-  `);
-
-  $(".lesson-details")
-    .html(content)
-    .css("background-color", getRandomLessonCardColor())
-    .css("color", "white");
-
-  $(".overlay, .lesson-details").addClass("active");
 }
 
 function showDeleteModal() {
@@ -237,10 +186,22 @@ function showInfoModal(message) {
 function showCreateEditModal() {
   const form = $("#edit-create-lesson-form");
   const id = $(this).data("id");
+  const day = $(this).parent().data("day");
 
   form.find("h2").text(id ? "Редактировать занятие" : "Добавить занятие");
+  form.find("input[name='id']").val(id ?? 0);
+  form
+    .find("input[name='week_parity']")
+    .val($("#week").is(":checked") ? "Нечётная" : "Чётная");
+  form.find("input[name='day_of_week']").val(day);
+
+  renderDisciplinesSelect();
 
   $(".overlay, .edit-popup").addClass("active");
+}
+
+function onEditCreateSubmited(e) {
+  e.preventDefault();
 }
 
 async function getAdditionalInfo(path) {
@@ -287,4 +248,69 @@ async function loadBuildingsOnEditCreateForm() {
     option.attr("data-address", build.address);
     select.append(option);
   }
+}
+
+function mapGroupsToOptions(data, params) {
+  if (!params.term) {
+    return {
+      results: data.map((group) => ({
+        id: group.group_code,
+        text: group.group_code,
+      })),
+    };
+  }
+
+  const filteredData = data.filter((group) => {
+    const searchTerm = params.term.toLowerCase();
+    return group.group_code.toLowerCase().indexOf(searchTerm) !== -1;
+  });
+
+  return {
+    results: filteredData.map((group) => ({
+      id: group.group_code,
+      text: group.group_code,
+    })),
+  };
+}
+
+function renderDisciplinesSelect() {
+  $(".discipline-select").select2({
+    placeholder: "Выберите дисциплину",
+    ajax: {
+      url: "/api/disciplines",
+      dataType: "json",
+      delay: 250,
+      processResults: mapDisciplinesToOption,
+      cache: true,
+    },
+  });
+}
+
+function mapDisciplinesToOption(data, params) {
+  if (!params.term) {
+    return {
+      results: data.map((discipline) => ({
+        id: discipline.title,
+        text: discipline.title,
+        data: {
+          id: discipline._id,
+        },
+      })),
+    };
+  }
+
+  const filteredData = data.filter((discipline) => {
+    const searchTerm = params.term.toLowerCase();
+    return discipline.title.toLowerCase().indexOf(searchTerm) !== -1;
+  });
+
+  return {
+    results: filteredData.map((discipline) => ({
+      id: discipline.title,
+      text: discipline.title,
+      data: {
+        id: discipline._id,
+      },
+    })),
+  };
 }

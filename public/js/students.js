@@ -1,11 +1,8 @@
 const baseUrl = "/api/lessons";
 let lessons = [];
-let groups = [];
+
 $(document).ready(async function () {
   $("#find-by-group").on("submit", onSearchByGroupSubmitted);
-  $("input[name='group_code']").on("input", function () {
-    $(this).removeClass("red-border");
-  });
 
   $(".group-select").select2({
     placeholder: "4317",
@@ -13,16 +10,9 @@ $(document).ready(async function () {
       url: "/api/groups",
       dataType: "json",
       delay: 250,
-      processResults: function (data) {
-        return {
-          results: data.map((group) => ({
-            id: group.group_code,
-            text: group.group_code,
-          })),
-        };
-      },
-      cache: true,
+      processResults: mapGroupsToOptions,
     },
+    cache: true,
   });
 });
 
@@ -114,33 +104,6 @@ function renderContent() {
     });
 }
 
-async function getGroups() {
-  const response = await fetch("/api/groups", {
-    method: "GET",
-    headers: {
-      Accept: "application/json",
-    },
-  });
-
-  if (response.ok) {
-    let result = await response.json();
-    return result;
-  }
-  return [];
-}
-
-async function loadGroupDatalist(groups) {
-  const groups_input = $("input[name='group_code']");
-
-  const datalist = $("<datalist id='groups'>");
-
-  for (group of groups) {
-    const opt = $("<option>").val(group.group_code).text(group.group_code);
-    datalist.append(opt);
-  }
-  groups_input.after(datalist);
-}
-
 function showDetails() {
   const id = $(this).attr("id");
   const lesson = lessons.find((lesson) => lesson._id == id);
@@ -161,4 +124,27 @@ function showDetails() {
     .css("color", "white");
 
   $(".overlay, .lesson-details").addClass("active");
+}
+
+function mapGroupsToOptions(data, params) {
+  if (!params.term) {
+    return {
+      results: data.map((group) => ({
+        id: group.group_code,
+        text: group.group_code,
+      })),
+    };
+  }
+
+  const filteredData = data.filter((group) => {
+    const searchTerm = params.term.toLowerCase();
+    return group.group_code.toLowerCase().indexOf(searchTerm) !== -1;
+  });
+
+  return {
+    results: filteredData.map((group) => ({
+      id: group.group_code,
+      text: group.group_code,
+    })),
+  };
 }

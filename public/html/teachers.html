@@ -6,6 +6,7 @@
     <title>Расписание преподавателей</title>
     <link rel="stylesheet" href="./schedule.css" />
     <link rel="stylesheet" href="./popups.css">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
   </head>
   <body>
     <a href="/" class="backlink"> &#8249 Назад</a>
@@ -14,8 +15,10 @@
       <form id="find-by-educator" class="input_group">
         <div>
           <span>ФИО преподавателя:</span>
-          <input type="text" name="educator_name" list="teachers"/>
-          <button>Найти</button>
+          <select class="teacher-select" required>
+            <option></option>
+          </select>
+          <button type="submit">Найти</button>
         </div>
         <div class="week">
           <p id="weekLabel"></p>
@@ -37,6 +40,7 @@
       integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
       crossorigin="anonymous"
     ></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script src="./schedule.js"></script>
     <script src="./teachers.js"></script>
   </body>

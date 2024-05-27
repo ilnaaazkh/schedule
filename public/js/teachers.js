@@ -1,14 +1,21 @@
 const baseUrl = "/api/lessons";
 let lessons = [];
-let teachers = [];
 
 $(document).ready(async function () {
-  teachers = await getTeachers();
-  await loadTeachersDataList(teachers);
-
   $("#find-by-educator").on("submit", onSearchByEducatorSubmited);
   $("input[name='educator_name']").on("input", function () {
     $(this).removeClass("red-border");
+  });
+
+  $(".teacher-select").select2({
+    placeholder: "Иванов И.И.",
+    ajax: {
+      url: "/api/educators",
+      dataType: "json",
+      delay: 250,
+      processResults: mapTeachersToOptions,
+    },
+    cache: true,
   });
 });
 
@@ -29,37 +36,6 @@ async function getLessonsByTeacher(educatorId, week_parity) {
   return false;
 }
 
-async function getTeachers() {
-  const response = await fetch("/api/educators", {
-    method: "GET",
-    headers: {
-      Accept: "aplication/json",
-    },
-  });
-
-  if (response.ok) {
-    const result = await response.json();
-    return result;
-  }
-  return [];
-}
-
-async function loadTeachersDataList(teachers) {
-  const form = $("#find-by-educator");
-  const educator_name_input = form.find("input[name='educator_name']");
-
-  const datalist = $("<datalist id='teachers'>");
-
-  for (teacher of teachers) {
-    const opt = $("<option>")
-      .val(`${teacher.middleName} ${teacher.firstName} ${teacher.lastName}`)
-      .attr("data-id", teacher._id);
-    datalist.append(opt);
-  }
-
-  educator_name_input.after(datalist);
-}
-
 async function onSearchByEducatorSubmited(e) {
   e.preventDefault();
 
@@ -68,17 +44,9 @@ async function onSearchByEducatorSubmited(e) {
     ? "Нечётная"
     : "Чётная";
 
-  const teacher = form.find("input[name='educator_name']").val();
-  const option = $(`#teachers option[value="${teacher}"]`);
-  const educatorId = option.data("id");
+  const teacher = $(".teacher-select").val();
 
-  let result = false;
-  if (teachers.some((t) => t._id == educatorId)) {
-    result = await getLessonsByTeacher(educatorId, week_parity);
-  } else {
-    form.find("input[name='educator_name']").addClass("red-border");
-    return;
-  }
+  let result = await getLessonsByTeacher(teacher, week_parity);
 
   if (result) {
     renderContent();
@@ -165,4 +133,29 @@ function showDetails() {
     .css("color", "white");
 
   $(".overlay, .lesson-details").addClass("active");
+}
+
+function mapTeachersToOptions(data, params) {
+  if (!params.term) {
+    return {
+      results: data.map((educator) => ({
+        id: educator._id,
+        text: `${educator.middleName} ${educator.firstName} ${educator.lastName}`,
+      })),
+    };
+  }
+
+  const filteredData = data.filter((educator) => {
+    const fullName =
+      `${educator.middleName} ${educator.firstName} ${educator.lastName}`.toLowerCase();
+    const searchTerm = params.term.toLowerCase();
+    return fullName.includes(searchTerm);
+  });
+
+  return {
+    results: filteredData.map((educator) => ({
+      id: educator._id,
+      text: `${educator.middleName} ${educator.firstName} ${educator.lastName}`,
+    })),
+  };
 }

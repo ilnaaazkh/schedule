@@ -1,7 +1,11 @@
 @import url("./shared.css");
 
-.input-select {
+.group-select {
   width: 150px;
+}
+
+.teacher-select {
+  width: 300px;
 }
 
 .backlink {
