@@ -4,6 +4,14 @@
   width: 150px;
 }
 
+.edit-select {
+  width: 400px;
+}
+
+.control {
+  margin-bottom: 20px;
+}
+
 .teacher-select {
   width: 300px;
 }
@@ -82,8 +90,11 @@ button {
   color: #ffffff;
   font-weight: 200px;
   padding: 0px 10px;
-
   border-radius: 10px;
+}
+
+form > button {
+  width: 200px;
 }
 
 .circle {

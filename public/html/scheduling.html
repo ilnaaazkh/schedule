@@ -52,12 +52,56 @@
               <input type="hidden" required name="week_parity">
               <input type="hidden" required name="day_of_week">
               
+              
               <div class="control">
                 <label for="discipline">Дисциплина: </label>
-                <select class="discipline-select">
+                <select class="discipline-select" required>
                   <option></option>
                 </select>
               </div>
+
+              <div class="control">
+                <label for="educator">Преподаватель</label>
+                <select class="educator-select" required>
+                  <option value=""></option>
+                </select>
+              </div>
+
+              <div class="control">
+                <label>Время занятия</label>
+                <select name="time" id="time" required>
+                  <option value="-1" selected disabled>00:00 - 00:00</option>
+                </select>
+              </div>
+
+              <div class="conrol">
+                <label>Вид занятия</label>
+                <select name="lesson-type" id="lesson-type" required>
+                  <option value="" selected disabled>Вид занятия</option>
+                  <option value="Лекция">Лекция</option>
+                  <option value="Практика">Практика</option>
+                  <option value="Лаб.раб.">Лаб.раб.</option>
+                </select>
+              </div>
+
+              <div class="control">
+                <label>Учебное здание</label>
+                <select class="building-select" required>
+                  <option value="" selected disabled></option>
+                </select>
+              </div>
+
+              <div class="control">
+                <label>Аудитория</label>
+                <input id="room-number" type="number" placeholder="Номер аудитории" required>
+              </div>
+
+              <div class="control">
+                <label>Группы</label>
+                <select class="groups-select">
+                </select>
+              </div>
+              
 
               
               <button type="submit">Сохранить</button>

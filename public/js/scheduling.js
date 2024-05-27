@@ -5,7 +5,7 @@ $(document).ready(async function () {
   $(".closePopup").on("click", closeModal);
   $("#find-by-group").on("submit", onSearchByGroupSubmitted);
   $("#delete-form").on("submit", onDeleteSubmited);
-  $("edit-create-lesson-from").on("submit", onEditCreateSubmited);
+  $("#edit-create-lesson-form").on("submit", onEditCreateSubmited);
 
   $(".group-select").select2({
     placeholder: "4317",
@@ -17,9 +17,6 @@ $(document).ready(async function () {
     },
     cache: true,
   });
-
-  await loadEducatorsOnEditCreateForm();
-  await loadBuildingsOnEditCreateForm();
 });
 
 async function getLessonsByGroup(group_code, week_parity) {
@@ -196,86 +193,37 @@ function showCreateEditModal() {
   form.find("input[name='day_of_week']").val(day);
 
   renderDisciplinesSelect();
+  renderEducatorSelect();
+  renderTimeSelect();
+  renderBuildingSelect();
+  renderGroupsSelect();
 
   $(".overlay, .edit-popup").addClass("active");
 }
 
 function onEditCreateSubmited(e) {
   e.preventDefault();
-}
+  const form = $("#edit-create-lesson-form");
 
-async function getAdditionalInfo(path) {
-  // Для подтягивания вариантов ответа на форму
-  const response = await fetch(`/api/${path}`, {
-    method: "GET",
-    headers: {
-      Accept: "application/json",
-    },
-  });
+  const id = form.find("input[name='id']").val();
+  const parity = form.find("input[name='week_parity']").val();
+  const day_of_week = form.find("input[name='day_of_week']").val();
 
-  if (response.ok) {
-    let result = await response.json();
-    return result;
-  }
+  const discipline = getDisciplineFromForm();
+  const educator = getEducatorFromForm();
+  const lesson_number = $("#time").val();
+  const lesson_type = $("#lesson-type").val();
+  const building = getBuildingFromForm();
+  const room_number = $("#room-number").val();
+  const groups = getGroupsFromForm();
 
-  return [];
-}
-
-async function loadEducatorsOnEditCreateForm() {
-  const educators = await getAdditionalInfo("educators");
-  const dataset = $("#educators");
-
-  for (let educator of educators) {
-    const note = `${educator.middleName} ${educator.firstName} ${educator.lastName}`;
-    const option = $("<option>").val(note);
-    option.attr("data-first-name", educator.firstName);
-    option.attr("data-middle-name", educator.middleName);
-    option.attr("data-last-name", educator.lastName);
-    option.attr("data-id", educator._id);
-    dataset.append(option);
-  }
-}
-
-async function loadBuildingsOnEditCreateForm() {
-  const buildings = await getAdditionalInfo("buildings");
-
-  const select = $("#buildings-select");
-  for (let build of buildings) {
-    const note = `${build.number} здание. ${build.address}`;
-    const option = $("<option>").val(note);
-    option.attr("data-id", build._id);
-    option.attr("data-number", build.number);
-    option.attr("data-address", build.address);
-    select.append(option);
-  }
-}
-
-function mapGroupsToOptions(data, params) {
-  if (!params.term) {
-    return {
-      results: data.map((group) => ({
-        id: group.group_code,
-        text: group.group_code,
-      })),
-    };
-  }
-
-  const filteredData = data.filter((group) => {
-    const searchTerm = params.term.toLowerCase();
-    return group.group_code.toLowerCase().indexOf(searchTerm) !== -1;
-  });
-
-  return {
-    results: filteredData.map((group) => ({
-      id: group.group_code,
-      text: group.group_code,
-    })),
-  };
+  console.log(groups);
 }
 
 function renderDisciplinesSelect() {
   $(".discipline-select").select2({
     placeholder: "Выберите дисциплину",
+    width: "100%",
     ajax: {
       url: "/api/disciplines",
       dataType: "json",
@@ -283,6 +231,60 @@ function renderDisciplinesSelect() {
       processResults: mapDisciplinesToOption,
       cache: true,
     },
+  });
+}
+
+function renderEducatorSelect() {
+  $(".educator-select").select2({
+    placeholder: "Иванов И.И.",
+    width: "100%",
+    ajax: {
+      url: "/api/educators",
+      dataType: "json",
+      delay: 250,
+      processResults: mapTeachersToOptions,
+      cache: true,
+    },
+  });
+}
+
+function renderTimeSelect() {
+  const select = $("#time");
+
+  for (let i = 0; i < lessonDurations.length; i++) {
+    const option = $("<option>")
+      .val(i + 1)
+      .text(lessonDurations[i]);
+    select.append(option);
+  }
+}
+
+function renderBuildingSelect() {
+  $(".building-select").select2({
+    placeholder: "Учебное здание",
+    width: "100%",
+    ajax: {
+      url: "/api/buildings",
+      dataType: "json",
+      delay: 250,
+      processResults: mapBuildingsToOptions,
+      cache: true,
+    },
+  });
+}
+
+function renderGroupsSelect() {
+  $(".groups-select").select2({
+    placeholder: "4317",
+    multiple: true,
+    width: "100%",
+    ajax: {
+      url: "/api/groups",
+      dataType: "json",
+      delay: 250,
+      processResults: mapGroupsToOptions,
+    },
+    cache: true,
   });
 }
 
@@ -314,3 +316,152 @@ function mapDisciplinesToOption(data, params) {
     })),
   };
 }
+
+function mapTeachersToOptions(data, params) {
+  if (!params.term) {
+    return {
+      results: data.map((educator) => ({
+        id: educator._id,
+        text: `${educator.middleName} ${educator.firstName} ${educator.lastName}`,
+        data: {
+          id: educator._id,
+          firstName: educator.firstName,
+          lastName: educator.lastName,
+          middleName: educator.middleName,
+        },
+      })),
+    };
+  }
+
+  const filteredData = data.filter((educator) => {
+    const fullName =
+      `${educator.middleName} ${educator.firstName} ${educator.lastName}`.toLowerCase();
+    const searchTerm = params.term.toLowerCase();
+    return fullName.includes(searchTerm);
+  });
+
+  return {
+    results: filteredData.map((educator) => ({
+      id: educator._id,
+      text: `${educator.middleName} ${educator.firstName} ${educator.lastName}`,
+      data: {
+        id: educator._id,
+        firstName: educator.firstName,
+        lastName: educator.lastName,
+        middleName: educator.middleName,
+      },
+    })),
+  };
+}
+
+function mapBuildingsToOptions(data, params) {
+  if (!params.term) {
+    return {
+      results: data.map((building) => ({
+        id: building._id,
+        text: `${building.number} здание. ${building.address}`,
+        data: {
+          id: building._id,
+          number: building.number,
+          address: building.address,
+        },
+      })),
+    };
+  }
+
+  const filteredData = data.filter((building) => {
+    const text = `${building.number} ${building.address}`.toLowerCase();
+    const searchTerm = params.term.toLowerCase();
+    return text.includes(searchTerm);
+  });
+
+  return {
+    results: filteredData.map((building) => ({
+      id: building._id,
+      text: `${building.number} здание. ${building.address}`,
+      data: {
+        id: building._id,
+        number: building.number,
+        address: building.address,
+      },
+    })),
+  };
+}
+
+function mapGroupsToOptions(data, params) {
+  if (!params.term) {
+    return {
+      results: data.map((group) => ({
+        id: group.group_code,
+        text: group.group_code,
+        data: {
+          id: group._id,
+          group_code: group.group_code,
+        },
+      })),
+    };
+  }
+
+  const filteredData = data.filter((group) => {
+    const searchTerm = params.term.toLowerCase();
+    return group.group_code.toLowerCase().indexOf(searchTerm) !== -1;
+  });
+
+  return {
+    results: filteredData.map((group) => ({
+      id: group.group_code,
+      text: group.group_code,
+      data: {
+        id: group._id,
+        group_code: group.code,
+      },
+    })),
+  };
+}
+
+function getDisciplineFromForm() {
+  let selectedData = $(".discipline-select").select2("data")[0];
+  let discipline = {
+    _id: selectedData.data.id,
+    title: selectedData.text,
+  };
+  return discipline;
+}
+
+function getEducatorFromForm() {
+  let selectedData = $(".educator-select").select2("data")[0];
+  let discipline = {
+    _id: selectedData.data.id,
+    firstName: selectedData.data.firstName,
+    middleName: selectedData.data.middleName,
+    lastName: selectedData.data.lastName,
+  };
+  return discipline;
+}
+
+function getBuildingFromForm() {
+  let selectedData = $(".building-select").select2("data")[0];
+  let building = {
+    _id: selectedData.data.id,
+    number: selectedData.data.number,
+    address: selectedData.data.address,
+  };
+  return building;
+}
+
+function getGroupsFromForm() {
+  let selectedData = $(".groups-select").select2("data");
+  let groups = [];
+
+  for (item of selectedData) {
+    group = {
+      _id: item.data.id,
+      group_code: item.data.group_code,
+    };
+    groups.push(group);
+  }
+
+  return groups;
+}
+
+function getLessonFromForm() {}

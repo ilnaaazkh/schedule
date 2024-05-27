@@ -14,8 +14,8 @@ $(document).ready(async function () {
       dataType: "json",
       delay: 250,
       processResults: mapTeachersToOptions,
+      cache: true,
     },
-    cache: true,
   });
 });
 
