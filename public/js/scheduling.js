@@ -201,23 +201,75 @@ function showCreateEditModal() {
   $(".overlay, .edit-popup").addClass("active");
 }
 
-function onEditCreateSubmited(e) {
+async function createLesson(lesson) {
+  const response = await fetch(baseUrl, {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(lesson),
+  });
+
+  if (response.ok) {
+    const result = await response.json();
+    lessons.push(result);
+    return true;
+  }
+  return false;
+}
+
+async function updateLesson(id, lesson) {
+  const response = await fetch(`${baseUrl}/${id}`, {
+    method: "PUT",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(lesson),
+  });
+
+  if (response.ok) {
+    const result = await response.json();
+    let index = lessons.findIndex((l) => l._id == result._id);
+    if (index > -1) {
+      lessons[index] = result;
+    }
+    return true;
+  }
+  return false;
+}
+
+async function onEditCreateSubmited(e) {
   e.preventDefault();
   const form = $("#edit-create-lesson-form");
 
   const id = form.find("input[name='id']").val();
-  const parity = form.find("input[name='week_parity']").val();
-  const day_of_week = form.find("input[name='day_of_week']").val();
 
-  const discipline = getDisciplineFromForm();
-  const educator = getEducatorFromForm();
-  const lesson_number = $("#time").val();
-  const lesson_type = $("#lesson-type").val();
-  const building = getBuildingFromForm();
-  const room_number = $("#room-number").val();
-  const groups = getGroupsFromForm();
+  const lesson = getLessonFromForm();
 
-  console.log(groups);
+  closeModal();
+
+  let resultStr = "";
+  let result;
+
+  if (id == 0) {
+    result = await createLesson(lesson);
+    resultStr = result
+      ? "Новое занятие успешно добавлено"
+      : "Не удалось добавить занятие";
+  } else {
+    result = await updateLesson(id, lesson);
+    resultStr = result
+      ? "Занятие успешно обновлено"
+      : "Не удалось обновить занятие";
+  }
+
+  if (result) {
+    renderContent();
+  }
+
+  showInfoModal(resultStr);
 }
 
 function renderDisciplinesSelect() {
@@ -249,7 +301,7 @@ function renderEducatorSelect() {
 }
 
 function renderTimeSelect() {
-  const select = $("#time");
+  const select = $("#time").empty();
 
   for (let i = 0; i < lessonDurations.length; i++) {
     const option = $("<option>")
@@ -464,4 +516,36 @@ function getGroupsFromForm() {
   return groups;
 }
 
-function getLessonFromForm() {}
+function getLessonFromForm() {
+  const form = $("#edit-create-lesson-form");
+  const parity = form.find("input[name='week_parity']").val();
+  const day_of_week = form.find("input[name='day_of_week']").val();
+
+  const discipline = getDisciplineFromForm();
+  const educator = getEducatorFromForm();
+  const lesson_number = $("#time").val();
+  const lesson_type = $("#lesson-type").val();
+  const building = getBuildingFromForm();
+  const room_number = $("#room-number").val();
+  const groups = getGroupsFromForm();
+
+  lesson = {
+    educator: educator,
+    lesson_type: lesson_type,
+    lesson_number: lesson_number,
+    building: building,
+    parity: parity,
+    room_number: room_number,
+    day_of_week: day_of_week,
+    discipline: discipline,
+    groups: groups,
+  };
+
+  return lesson;
+}
+
+function closeModal() {
+  $(".overlay").removeClass("active");
+  $(".overlay").children().removeClass("active");
+  $(".control>input").val("");
+}
