@@ -3,6 +3,7 @@ const express = require("express");
 const path = require("path");
 const apiRoutes = require("./routes/index.routes.js");
 const { connectToDatabase } = require("./models/index.js");
+const cookieParser = require("cookie-parser");
 const roleMiddleware = require("./middleware/role.middleware.js");
 
 const PORT = process.env.PORT || 3000;
@@ -10,6 +11,7 @@ const PORT = process.env.PORT || 3000;
 const app = express();
 
 app.use(express.json());
+app.use(cookieParser());
 //app.use(express.static("./public/html"));
 app.use(express.static("./public/css"));
 app.use(express.static("./public/imgs"));

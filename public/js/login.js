@@ -22,7 +22,10 @@ async function onLogInSubmited(e) {
   });
 
   if (response.ok) {
-    console.log(await response.json());
+    const data = await response.json();
+    document.cookie = `token=${data.token};path=/;max-age=${24 * 60 * 60}`;
+    document.location = "/admin";
   } else {
+    alert("Login failed");
   }
 }

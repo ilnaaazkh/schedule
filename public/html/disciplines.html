@@ -9,28 +9,30 @@
     <link rel="stylesheet" href="./admin.css" />
   </head>
   <body>
-    <div class="sidebar">
-      <div class="action">
-        <a href="/educators">Преподаватели</a>
+    <div class="container">
+      <div class="sidebar">
+        <div class="action">
+          <a href="/educators">Преподаватели</a>
+        </div>
+        <div class="action">
+          <a href="/disciplines">Дисциплины</a>
+        </div>
+        <div class="action">
+          <a href="/departments">Кафедры</a>
+        </div>
+        <div class="action">
+          <a href="/groups">Группы</a>
+        </div>
+        <div class="action"><a href="/buildings">Здания</a></div>
+        <div class="action"><a href="/scheduling">Расписание</a></div>
       </div>
-      <div class="action">
-        <a href="/disciplines">Дисциплины</a>
-      </div>
-      <div class="action">
-        <a href="/departments">Кафедры</a>
-      </div>
-      <div class="action">
-        <a href="/groups">Группы</a>
-      </div>
-      <div class="action"><a href="/buildings">Здания</a></div>
-      <div class="action"><a href="/scheduling">Расписание</a></div>
+        <div class="content">
+          <h1>Дисциплины</h1>
+          <input type="text" id="search" placeholder="Поиск" />
+          <div class="disciplines"></div>
+          <button class="add" onclick="showCreateModal()">Добавить</button>
+        </div>
     </div>
-      <div class="content">
-        <h1>Дисциплины</h1>
-        <input type="text" id="search" placeholder="Поиск" />
-        <div class="disciplines"></div>
-        <button class="add" onclick="showCreateModal()">Добавить</button>
-      </div>
 
       <div class="overlay">
         <div class="popup delete-popup">
