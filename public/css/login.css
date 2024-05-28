@@ -1,0 +1,47 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.card {
+  width: 500px;
+  height: 300px;
+  border-radius: 30px;
+  padding: 30px;
+  box-sizing: border-box;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+input {
+  background-color: transparent;
+  display: block;
+  margin: 10px 0px 40px 0px;
+  width: 100%;
+  border-bottom: 1px solid grey;
+}
+
+.btn-container {
+  display: flex;
+  justify-content: center;
+}
+
+h2 {
+  margin-bottom: 20px;
+  margin-top: 10px;
+  text-align: center;
+}
+
+button {
+  width: 150px;
+  height: 30px;
+  background-color: #8ab6f9;
+  border-radius: 10px;
+  color: white;
+  font-weight: 600;
+  margin: 0 auto;
+}
