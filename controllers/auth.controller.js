@@ -26,14 +26,14 @@ const registration = async (req, res) => {
       return res.status(400).json({ message: "User already exist" });
     }
     const passwordHash = bcrypt.hashSync(password, 7);
-    const userRole = await Role.findOne({ value: "ADMIN" });
+    const userRole = await Role.findOne({ value: "USER" });
     const user = new User({
       username,
       password: passwordHash,
       roles: [userRole.value],
     });
     await user.save();
-    res.status(200).json({ message: "User created" });
+    res.status(200).json(user);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
@@ -68,8 +68,21 @@ const login = async (req, res) => {
 
 const getUsers = async (req, res) => {
   try {
-    const users = Users.find({});
+    const users = await User.find({ roles: { $in: ["USER"] } });
     res.status(200).json(users);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+const deleteUser = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const deletedUser = await User.findByIdAndDelete(id);
+    if (!deletedUser) {
+      return res.status(404).json({ message: "User not found" });
+    }
+    return res.status(200).json(deletedUser);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
@@ -79,4 +92,5 @@ module.exports = {
   getUsers,
   login,
   registration,
+  deleteUser,
 };

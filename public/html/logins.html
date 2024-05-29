@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Вход</title>
+    <link rel="stylesheet" href="./login.css" />
+    <link rel="stylesheet" href="./shared.css" />
+  </head>
+  <body>
+    <div class="card">
+      <h2>ВОЙТИ</h2>
+      <form id="login-form">
+        <label for="username">Логин</label>
+        <input type="text" name="username" required />
+        <label>Пароль</label>
+        <input type="password" name="password" required />
+        <div class="btn-container">
+          <button type="submit">Войти</button>
+        </div>
+      </form>
+    </div>
+  </body>
+  <script
+    src="https://code.jquery.com/jquery-3.7.1.js"
+    integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+    crossorigin="anonymous"
+  ></script>
+  <script src="./logins.js"></script>
+</html>

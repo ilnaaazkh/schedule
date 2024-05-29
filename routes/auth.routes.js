@@ -3,6 +3,7 @@ const {
   getUsers,
   registration,
   login,
+  deleteUser,
 } = require("../controllers/auth.controller.js");
 const { check } = require("express-validator");
 const router = express.Router();
@@ -20,5 +21,6 @@ router.post(
 );
 router.post("/login", login);
 router.get("/users", getUsers);
+router.delete("/users/:id", deleteUser);
 
 module.exports = router;

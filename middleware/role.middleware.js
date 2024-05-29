@@ -10,7 +10,7 @@ module.exports = function (roles) {
     try {
       const token = req.cookies.token;
       if (!token) {
-        return res.redirect("/login");
+        return res.redirect(roles.includes("ADMIN") ? "/logins" : "/login");
       }
 
       const { roles: userRoles } = jwt.verify(token, secret);
@@ -22,13 +22,11 @@ module.exports = function (roles) {
       });
 
       if (!hasRole) {
-        return res
-          .status(403)
-          .json("Acces denied. You don`t have enough permissions");
+        return res.redirect(roles.includes("ADMIN") ? "/logins" : "/login");
       }
       next();
     } catch {
-      return res.redirect("/login");
+      return res.redirect(roles.includes("ADMIN") ? "/logins" : "/login");
     }
   };
 };

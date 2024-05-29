@@ -34,8 +34,16 @@ app.get("/admin", roleMiddleware(["USER"]), (req, res) => {
   res.sendFile(path.join(__dirname, "./public/html/admin.html"));
 });
 
+app.get("/superadmin", roleMiddleware(["ADMIN"]), (req, res) => {
+  res.sendFile(path.join(__dirname, "./public/html/superadmin.html"));
+});
+
 app.get("/login", (req, res) => {
   res.sendFile(path.join(__dirname, "./public/html/login.html"));
+});
+
+app.get("/logins", (req, res) => {
+  res.sendFile(path.join(__dirname, "./public/html/logins.html"));
 });
 
 app.get("/buildings", roleMiddleware(["USER"]), (req, res) => {

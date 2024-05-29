@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Сотрудники</title>
+    <link rel="stylesheet" href="./shared.css" />
+    <link rel="stylesheet" href="./popups.css" />
+    <link rel="stylesheet" href="./admin.css" />
+  </head>
+  <body>
+    <div class="content">
+      <h2>Сотрудники</h2>
+      <div class="empls"></div>
+      <button class="add">Добавить</button>
+    </div>
+    <div class="overlay">
+      <div class="delete-popup popup">
+        <a href="#" class="closePopup">X</a>
+        <form id="delete-form">
+          <p>Вы действительно хотите удалить этого сотрудника?</p>
+          <input type="hidden" name="id" />
+          <button type="submit">Удалить</button>
+        </form>
+      </div>
+      <div class="edit-popup popup">
+        <a href="#" class="closePopup">X</a>
+        <form id="create-form" autocomplete="off">
+          <p>Добавить нового сотрудника</p>
+          <input type="text" name="username" required />
+          <input type="password" name="password" required />
+          <button type="submit">Сохранить</button>
+        </form>
+      </div>
+      <div class="popup info-popup">
+        <h2></h2>
+        <button onclick="closeModal()">Закрыть</button>
+      </div>
+    </div>
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.js"
+      integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+      crossorigin="anonymous"
+    ></script>
+    <script src="./superadmin.js"></script>
+  </body>
+</html>
